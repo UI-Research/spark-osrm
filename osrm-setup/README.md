@@ -2,7 +2,7 @@
 
 This is the first section of instructions for setting up the Parallel Routing Analysis using OSRM and Postgres in Spark. In this section, I walk through setting up the OSRM files. To accomplish these tasks, I assume you have some familiarity with Amazon Web Services, the command line, and Docker.
 
-1. Start up a large server from the **Canonical Ubuntu** AMI Amazon provides with plenty of cores and a decent amount of memory, and be sure to provision at least 100GB of hard drive space. You probably won't need more than 32GB Memory, but the more cores available, the faster this process will go. I recommend an m4.10xlarge or m4.16xlarge on the spot market to maximize processing power and reduce costs. The typical Amazon Linux AMI as default is fine.
+1. Start up a large server from the Ubuntu Server AMI Amazon provides with plenty of cores and a decent amount of memory, and be sure to provision at least 100GB of hard drive space. You probably won't need more than 32GB Memory, but the more cores available, the faster this process will go. I recommend an m4.10xlarge or m4.16xlarge on the spot market to maximize processing power and reduce costs. The typical Amazon Linux AMI as default is fine.
 
 2. Once your instance starts up and you SSH in, run the setup-ubuntu.sh script. You may need to issue the command `chmod +x setup-ubuntu.sh` before running to make it executable. You can run the script by typing `./setup-ubuntu.sh` or `bash setup-ubuntu.sh`.
 
