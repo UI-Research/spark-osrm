@@ -10,3 +10,12 @@ This is the third section of instructions for setting up the Parallel Routing An
 
 3. From your local computer, spin up the Spark instances using the code in `setup-osrm-spark.sh`. You'll need to specify your zone, any VPC and subnet settings, the size and number of your instances, etc. before you run this, as this code is just an example. For more information on how to do this, go to https://aws.amazon.com/documentation/cli/. Note that you cannot use instances with less than 32GB of memory on the Master or Slave nodes, as the OSRM server requires at least 16GB of RAM to run, so I recommend using m4.2xlarge for these instances on spot pricing. You can run the code using `./setup-osrm-spark.sh` or `bash setup-osrm-spark.sh`. Note that you can also create your instances using the AWS Console using the EMR service.
 
+### Create Analysis
+
+1. In the AWS Console, get the IP Address of the Master EC2 instance for your cluster, and SSH into the Master instance. Once there, copy the get_estimates.py file to the instance and change the IP of the Postgres instance, password, and geographic level in the file to match your project.
+
+2. Run the analysis using the following code. You can follow the progress of it in the terminal you ran the command or by checking `http://YOUR EC2 MASTER IP:8080`. This should take a while.
+
+   ```bash
+   spark-submit --jars /mnt/postgresql-9.4.1212.jre6.jar get_estimates.py
+   ```
