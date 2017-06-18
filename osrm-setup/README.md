@@ -9,13 +9,13 @@ This is the first section of instructions for setting up the Parallel Routing An
 3. Extract the data from the PBF file with the following code. This could take an hour or two.
 
    ```bash
-   osrm-extract -p /osrm-backend/profiles/car.lua /north-america-latest.osm.pbf
+   osrm-extract -p /home/ubuntu/osrm-backend/profiles/car.lua /home/ubuntu/north-america-latest.osm.pbf
    ```
 
 4. Contract the data to easily loaded route form with the following code. This could take an hour or two.
 
    ```bash
-   osrm-contract /north-america-latest.osrm
+   osrm-contract /home/ubuntu/north-america-latest.osrm
    ```
 
 5. Test the files you've created. To do so, run `osrm-routed /north-america-latest.osrm`, and wait until the script notifies you it's loaded the names and is ready to accept requests, which should take a minute or two. Now, open up port 5000 to your IP in the security settings for your instance in the AWS Console, note the AWS EC2 IP for the instance, and navigate to the following site in your browser. It should return data in JSON immediately - if it doesn't, you may have done something incorrectly in the previous steps.
@@ -29,8 +29,8 @@ This is the first section of instructions for setting up the Parallel Routing An
    ```bash
    export AWS_ACCESS_KEY_ID=YOUR ACCESS KEY
    export AWS_SECRET_ACCESS_KEY=YOUR SECRET KEY
-   mkdir /datatransfer
-   mv /north-america-latest.osrm* /datatransfer/
-   cd /datatransfer
+   mkdir /home/ubuntu/datatransfer
+   mv /home/ubuntu/north-america-latest.osrm* /home/ubuntu/datatransfer/
+   cd /home/ubuntu/datatransfer
    aws s3 sync . s3://<YOUR S3 BUCKET NAME>/osrm-data
    ```
