@@ -19,7 +19,7 @@ for i in 01 02 04 05 06 08 09 10 11 12 13 15 16 17 18 19 20 21 22 23 24 25 26 27
 	psql -U postgres -c "DROP TABLE tl_2016_${i}_${geog}" 
 done 
 psql -U postgres -c "CREATE INDEX ${geog}_index ON ${geog} USING GIST (geom)" 
-psql -U postgres -c "SELECT AddGeometryColumn ('public','${geog}','geom',4269,'MULTIPOLYGON',2);"
+psql -U postgres -c "SELECT AddGeometryColumn ('public','${geog}','centroid',4269,'POINT',2);"
 psql -U postgres -c "UPDATE ${geog} SET centroid = (SELECT ST_CENTROID(geom));"
 psql -U postgres -c "CREATE INDEX centroid_index ON ${geog} USING GIST (centroid);"
 psql -U postgres -c "UPDATE ${geog} SET lon = ST_X(centroid);"

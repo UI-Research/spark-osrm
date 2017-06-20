@@ -17,5 +17,5 @@ This is the third section of instructions for setting up the Parallel Routing An
 2. Run the analysis using the following code. You can follow the progress of it in the terminal you ran the command or by checking `http://YOUR EC2 MASTER IP:8080`. This should take a while.
 
    ```bash
-   spark-submit --jars /mnt/postgresql-9.4.1212.jre6.jar get_estimates.py
+   sudo spark-submit --jars /mnt/postgresql-9.4.1212.jre6.jar get_estimates.py
    ```
