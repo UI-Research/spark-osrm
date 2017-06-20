@@ -29,11 +29,14 @@ def analysis(line):
 	import requests
 	import json
 	url = 'http://0.0.0.0:5000/route/v1/driving/{},{};{},{}'
-	r = requests.get(url.format(line[3],line[4],line[5],line[6])).text
-	data = json.loads(r)
-	distance = round(data["routes"][0]["distance"]/1000, 1)
-	duration = round(data["routes"][0]["duration"]/60, 1)
-	return [line[0],distance,duration]
+	try:
+		r = requests.get(url.format(line[3],line[4],line[5],line[6]), timeout=3).text
+		data = json.loads(r)
+		distance = round(data["routes"][0]["distance"]/1000, 1)
+		duration = round(data["routes"][0]["duration"]/60, 1)
+		return [line[0],distance,duration]
+	except:
+		return [line[0],-1.0,-1.0]
 
 # Run Spark job
 data_rdd = data.rdd
