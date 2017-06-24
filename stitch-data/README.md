@@ -6,16 +6,14 @@ This is the fourth section of instructions for setting up the Parallel Routing A
 
 1. SSH into your EC2 instance running the Docker Postgres environment. If you're using Block Group or Block level data, you may need to spin up another instance with more memory, likely m4.10xlarge or m4.16xlarge.
 
-2. Set up and install the Anaconda Python environment by following the instructions [here](https://www.continuum.io/downloads). You'll want to copy the link address to the 64-bit x86 installer for Python3 and running `wget <link address>` (e.g., `wget https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh`). Then run the bash command that Anaconda tells you to (e.g., `bash Anaconda3-4.4.0-Linux-x86_64.sh`) and follow and complete the prompts to install the software.
-
-3. Setup AWS CLI configuration by exporting your keys to the environment as you did when setting up the Spark environment. 
+2. Setup AWS CLI configuration by exporting your keys to the environment as you did when setting up the Spark environment. 
 
    ```bash
    export AWS_ACCESS_KEY_ID=<YOUR AWS ACCESS KEY>
    export AWS_SECRET_ACCESS_KEY=<YOUR AWS SECRET KEY>
    ```
 
-4. Download the files produced from the Spark analysis using the AWS CLI, copying the `/path/to/bucket/output/folder` filepath from what you specified in the last line of get_estimates.py in the Spark process. This may take a few minutes.
+3. Download the files produced from the Spark analysis using the AWS CLI, copying the `/path/to/bucket/output/folder` filepath from what you specified in the last line of get_estimates.py in the Spark process. This may take a few minutes.
 
    ```bash
    mkdir data
