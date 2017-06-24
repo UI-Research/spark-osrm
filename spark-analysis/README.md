@@ -1,6 +1,6 @@
 # Running the Analysis to Produce the Estimates in Spark
 
-This is the third section of instructions for setting up the Parallel Routing Analysis using OSRM and Postgres in Spark. In this section, I walk through running the analysis to produce estimates in Spark. To accomplish these tasks, I assume you have some familiarity with Amazon Web Services, the command line, and Spark.
+This is the third section of instructions for setting up the Parallel Routing Analysis using OSRM and Postgres in Spark. In this section, I walk through running the analysis to produce estimates in Spark. To accomplish these tasks, I assume you have some familiarity with Amazon Web Services, the command line, Python, and Spark.
 
 ### Setup Spark Cluster
 
@@ -12,10 +12,19 @@ This is the third section of instructions for setting up the Parallel Routing An
 
 ### Create Analysis
 
-1. In the AWS Console, get the IP Address of the Master EC2 instance for your cluster, and SSH into the Master instance. Once there, copy the get_estimates.py file to the instance and change the IP of the Postgres instance, password, and geographic level in the file to match your project.
+1. In the AWS Console, get the IP Address of the Master EC2 instance for your cluster, and SSH into the Master instance. Once there, copy the get_estimates.py file to the instance and change the IP of the Postgres instance, password, and geographic level in the file to match your project, and be sure to specify the output location of your S3 bucket at the end of the file.
 
-2. Run the analysis using the following code. You can follow the progress of it in the terminal you ran the command or by checking `http://YOUR EC2 MASTER IP:8080`. This should take a while.
+2. Export your S3 credentials to the right environment variables.
+
+   ```bash
+   export AWS_ACCESS_KEY_ID=<YOUR AWS ACCESS KEY>
+   export AWS_SECRET_ACCESS_KEY=<YOUR AWS SECRET KEY>
+   ```
+
+3. Run the analysis using the following code. You can follow the progress of it in the terminal you ran the command or by checking `http://YOUR EC2 MASTER IP:8080`. This should take a while.
 
    ```bash
    sudo spark-submit --jars /mnt/postgresql-9.4.1212.jre6.jar get_estimates.py
    ```
+
+4. Once complete, shut down your EMR cluster to save money, as you'll no longer need it, but keep the EC2 Instance running Postgres up, as we'll use it in the next step.

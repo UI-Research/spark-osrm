@@ -31,14 +31,13 @@ def analysis(line):
 	url = 'http://0.0.0.0:5000/route/v1/driving/{},{};{},{}'
 	r = requests.get(url.format(line[3],line[4],line[5],line[6]), timeout=3).text
 	data = json.loads(r)
-	distance = round(data["routes"][0]["distance"]/1000, 1)
-	duration = round(data["routes"][0]["duration"]/60, 1)
-	return [line[1],line[2],distance,duration]
+	try:
+		distance = round(data["routes"][0]["distance"]*0.621371/1000, 1)
+		duration = round(data["routes"][0]["duration"]/60, 1)
+		return json.dumps([line[1],line[2],distance,duration])
+	except KeyError:
+		return json.dumps([line[1],line[2],-1.0,-1.0])
 
 # Run Spark job
 data_rdd = data.rdd
-results = data_rdd.map(analysis).collect()
-
-# Write Data to File
-with open('/mnt/results.json', 'wb') as f:
-	json.dump(results, f)
+results = data_rdd.map(analysis).saveAsTextFile('s3n://path/to/bucket/output/folder')
