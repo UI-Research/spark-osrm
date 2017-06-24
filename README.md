@@ -5,6 +5,6 @@ This repository contains instructions and code for creating real driving time an
 - Setting up the OSRM files (osrm-setup - **completed**) 
 - Setting up the GIS files and Postgres environment (postgres-setup - **completed**) 
 - Running the analysis to produce the estimates in Spark (spark-analysis - **completed**)
-- Stitching the Spark output into a CSV file format (stictch-data - *in progress*)
+- Stitching the Spark output into a CSV file format (stitch-data - *in progress*)
 
 To use these tools, I expect you have some familiarity with Amazon Web Services, the command line, Docker, Postgres, SQL, Spark, and Python.
