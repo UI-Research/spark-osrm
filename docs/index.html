@@ -1,20 +1,120 @@
 <!DOCTYPE html>
-<html lang=en>
+<html lang="en">
 
 <head>
-	<meta charset=utf-8>
-	<meta content="IE=edge" http-equiv=X-UA-Compatible>
-	<meta content="width=device-width,initial-scale=1" name=viewport>
-	<title>Urban Institute - Census Tract Origin Destination Driving Times</title>
-	<link rel="stylesheet" href="">
-	<script type="text/javascript" src=""></script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@grahamimac">
+    <meta name="twitter:creator" content="@grahamimac">
+    <meta name="twitter:title" content="Urban Institute - Census Tract Origin Destination Driving Times">
+    <meta name="twitter:description" content="Driving times and distances between all Census Tracts in the US within 150 miles of each other.">
+
+    <meta property="og:title" content="Urban Institute - Census Tract Origin Destination Driving Times" />
+    <meta property="og:description" content="Driving times and distances between all Census Tracts in the US within 150 miles of each other." />
+
+
+    <title>Urban Institute - Census Tract Origin Destination Driving Times</title>
+    <link rel="icon" target="_blank" href="favicon.ico" type="image/x-icon">
+
+    <!-- Bootstrap Core CSS -->
+    <link target="_blank" href="css/vendor/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link target="_blank" href="css/vendor/graphics.css" rel="stylesheet">
+
+    <!-- Urban Theme CSS -->
+    <link rel="stylesheet/less" type="text/css" href="css/vendor/variables.less" />
+    <!--    <link target="_blank" href="css/theme.css" rel="stylesheet">-->
+    <link target="_blank" href="css/vendor/color-column.css" rel="stylesheet">
+    <script src="js/vendor/less.min.js" type="text/javascript"></script>
+
+    <!-- Custom Fonts -->
+    <link target="_blank" href="css/vendor/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link target="_blank" href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link target="_blank" href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+    <!-- Graham JS -->
+	<link href="css/index.css" rel="stylesheet">
+	<script src="js/vendor/jquery-3.2.1.min.js" type="text/javascript"></script>
+	<script src="js/index.js" type="text/javascript"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
-<body>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="http://www.urban.org" target="_blank">
+                    <div class="logo"></div>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a target="_blank" href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#preface">Preface</a>
+                    </li>
+										<li>
+										<a class="page-scroll subnav-trigger" href="#urbanterms">Style</a>
+										</li>
+										
+										<li>
+										<a class="page-scroll" href="#documentation">Documentation</a>
+										</li>
+										
+										<li>
+										<a class="page-scroll" href="#resources">Resources</a>
+										</li>
+										<li>
+										<a class="page-scroll" href="#credits">Credits</a>
+										</li>
+										
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+ 
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
 				<h1>Census Tract Origin Destination Driving Times</h1>
-				
+				<h3>Download the Data</h3>
+				<p><a href="https://s3.amazonaws.com/ui-twitter/Misc_Helper_Files/tract_data/tract_drive_times.zip" target="_blank">Complete Dataset</a> (1.2 GB)</p>
+				<p>State-level Data</p>
+				<ul id="fillList">
+					
+				</ul>
+				<h3>Update</h3>
+				<p>We plan to update this data annually. We also hope to include public transit time calculations, where possible, and travel time with peak traffic estimates, in future updates.</p>
+				<h3>Methodology</h3>
+				<p>We use 2010 Census Tract geographies and select all unique combinations of Census tract pairs in the 50 states and District of Columbia that are located within 150 miles of each other by straight line distance, using the centroid of each Census tract for the "address" of that tract, which results in over 154 million pairs. We generate a routing engine from the Open Street Map Routing Machine (OSRM) using the Open Street Map North America data extract as of June 7, 2017, which allows for the calculation of routing for cars, but not for public transportation, which we do not include in this analysis.</p>
+				<p>Open Street Map is an open source, crowdsourced dataset, which means it is constantly updated by a group of dedicated volunteers, and therefore may have some errors, be dated in certain locations, and contain omissions.</p>
+				<p>We use the routing engine to calculate the fastest driving distance and time with no traffic between each of the over 154 million pairs, using the OSRM /route/v1/driving endpoint. For more information on how these routes are calculated, see <a href="http://project-osrm.org/docs/v5.7.0/api/#general-options" target="_blank">OSRM</a>. We speed up the calculation using container technology combined with Apache Spark's parallelized framework. We use the OSRM-backend container combined with the pre-processed routing network, and bootstrap the machines on 50 instances simultaneously using AWS EMR services. Then, we use Apache Spark to queue the millions of calculations, send them out to the machines, and write the results out to cloud storage. Finally, we use additional scripts to recombine the data into single and state-level files for download.</p>
+				<p>For more information, contact <a href="https://www.twitter.com/grahamimac">Graham MacDonald</a>, Data Scientist and Senior Manager of Data Technology and Innovation at the Urban Institute.</p>
 			</div>
 		</div>
 	</div>
