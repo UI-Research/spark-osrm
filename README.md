@@ -7,4 +7,4 @@ This repository contains instructions and code for creating real driving time an
 - Running the analysis to produce the estimates in Spark (spark-analysis - **completed**)
 - Stitching the Spark output into a CSV file format (stitch-data - **completed**)
 
-To use these tools, I expect you have some familiarity with Amazon Web Services, the command line, Docker, Postgres, SQL, Spark, and Python.
+To use these tools, I expect you have some familiarity with Amazon Web Services, the command line, Docker, Postgres, SQL, Spark, and Python. For the data, go the pages site: https://ui-research.github.io/spark-osrm/.
