@@ -58,22 +58,19 @@
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
-				<h1>Census Tract Origin Destination Driving Times</h1>
+				<h1>Census Tract Origin Destination Driving Times, 2017</h1>
 				<p style="margin-top:50px;margin-bottom:30px;"><img src="css/logo.png" style="max-width: 370px" /></p>
 				<h3>Download the Data</h3>
-				<p><a href="https://s3.amazonaws.com/ui-twitter/Misc_Helper_Files/tract_data/tract_drive_times.zip" target="_blank">Complete Dataset</a> (1.2 GB)</p>
-				<p>State-level Data</p>
-				<ul id="fillList">
-					
-				</ul>
+				<p><a href="https://ui-spark-data-public.s3.amazonaws.com/travel-times/97408f72-ac59-4129-befe-3ad92f1c4748.csv" target="_blank">Complete Dataset</a> (6.2 GB)</p>
+
 				<h3>Methodology</h3>
 				<p>We use 2010 Census Tract geographies and select all unique combinations of Census tract pairs in the 50 states and District of Columbia that are located within 150 miles of each other by straight line distance, using the centroid of each Census tract for the "address" of that tract, which results in over 154 million pairs. We generate a routing engine from the Open Street Map Routing Machine (OSRM) using the Open Street Map North America data extract as of June 7, 2017, which allows for the calculation of routing for cars, but not for public transportation, which we do not include in this analysis.</p>
-				<p>Open Street Map is an open source, crowdsourced dataset, which means it is constantly updated by a group of dedicated volunteers, and therefore may have some errors, be dated in certain locations, and contain omissions.</p>
+				<p>Open Street Map is an open source, crowdsourced dataset, which means it is constantly updated by a group of dedicated volunteers, and therefore may have some errors, be dated in certain locations, and contain omissions. We use data from 2017.</p>
 				<p>We use the routing engine to calculate the fastest driving distance and time with no traffic between each of the over 154 million pairs, using the OSRM /route/v1/driving endpoint. For more information on how these routes are calculated, see <a href="http://project-osrm.org/docs/v5.7.0/api/#general-options" target="_blank">OSRM</a>. We speed up the calculation using container technology combined with Apache Spark's parallelized framework. We use the OSRM-backend container combined with the pre-processed routing network, and bootstrap the machines on 50 instances simultaneously using AWS EMR services. Then, we use Apache Spark to queue the millions of calculations, send them out to the machines, and write the results out to cloud storage. Finally, we use additional scripts to recombine the data into single and state-level files for download.</p>
 				<p>For the full process to create the data yourself, see the Github repository at <a href="https://github.com/UI-Research/spark-osrm" target="_blank">https://github.com/UI-Research/spark-osrm</a>.</p>
-				<p>For more information, contact <a href="https://www.twitter.com/grahamimac">Graham MacDonald</a>, Data Scientist and Senior Manager of Data Technology and Innovation at the Urban Institute.</p>
+				<p>For more information, contact <a href="https://www.twitter.com/grahamimac">Graham MacDonald</a> at the Urban Institute.</p>
 				<h3>Update</h3>
-				<p style="margin-bottom:30px;">We plan to update this data annually. We also hope to include public transit time calculations, where possible, and travel time with peak traffic estimates, in future updates.</p>
+				<p style="margin-bottom:30px;">The data represents a snapshot from 2017.</p>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
