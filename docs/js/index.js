@@ -4,8 +4,8 @@ states = {"Alabama":{"url":"01","size":23.2},"Alaska":{"url":"02","size":0.4},"A
 
 $(document).ready(function(){
 
-	for (key in states){
-		$('#fillList').append('<li><a href="https://s3.amazonaws.com/ui-twitter/Misc_Helper_Files/tract_data/tract_drive_times_' + states[key]["url"] + '.zip">' + key + '</a> (' + states[key]["size"] + ' MB)</li>')
-	}	
+	// for (key in states){
+	//	$('#fillList').append('<li><a href="https://s3.amazonaws.com/ui-twitter/Misc_Helper_Files/tract_data/tract_drive_times_' + states[key]["url"] + '.zip">' + key + '</a> (' + states[key]["size"] + ' MB)</li>')
+	// }	
 
 })
